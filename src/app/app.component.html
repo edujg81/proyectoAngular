@@ -1,24 +1,29 @@
 <main>
-  <div class="content">
       <h1>{{ title }}</h1>
-  </div>
 </main>
 
-<div *ngFor="let restaurant of restaurantList">
-  <!-- <img src="{{restaurant.photograph}}"> -->
-  <img [src]="restaurant.photograph">
-  <h2> {{ restaurant.name }} </h2>
-  <p> {{ restaurant.neighborhood }} </p>
-  <p> {{ restaurant.address }} </p>
+<div
+  fxLayout="row wrap"
+  fxLayoutGap="20px"
+  fxFill fxLayoutAlign="center center"
+>
 
-  <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
-    The restaurant has {{ restaurant.reviews.length }} reviews.
-  </div>
+<div class="tarjeta" *ngFor="let restaurant of restaurantList" fxFlex="30">
+  <!-- <img src="{{restaurant.photograph}}"> -->
+  
+    <img [src]="restaurant.photograph">
+    <h2> {{ restaurant.name }} </h2>
+    <p> {{ restaurant.neighborhood }} </p>
+    <p> {{ restaurant.address }} </p>
+
+    <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
+      <p>The restaurant has {{ restaurant.reviews.length }} reviews.</p>
+    </div>
 </div>
 
 <ng-template #noRestaurantsTemplate>
   <div>
-    No reviews yet!
+    <p>No reviews yet!</p>
   </div>
 </ng-template>
 
