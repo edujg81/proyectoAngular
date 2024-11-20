@@ -1,11 +1,12 @@
-<main class="main">
+<main>
   <div class="content">
-    <div class="left-side">
       <h1>{{ title }}</h1>
-    </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
   </div>
 </main>
 
-<app-restaurant></app-restaurant>
+<img src="{{ restaurantList[0].photograph }}">
+<h2> {{ restaurantList[0].name }} </h2>
+<p> {{ restaurantList[0].neighborhood }} </p>
+<p> {{ restaurantList[0].address }} </p>
+
 <router-outlet />
