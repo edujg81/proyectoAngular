@@ -8,17 +8,38 @@
   fxFill fxLayoutAlign="center center"
 >
 
-<div class="tarjeta" *ngFor="let restaurant of restaurantList" fxFlex.lt-sm="100" fxFlex.sm="45" fxFlex.gt-sm="30">
+<div *ngFor="let restaurant of restaurantList" fxFlex.lt-sm="100" fxFlex.sm="45" fxFlex.gt-sm="30">
   <!-- <img src="{{restaurant.photograph}}"> -->
   
-    <img [src]="restaurant.photograph">
+    <!-- <img [src]="restaurant.photograph">
     <h2> {{ restaurant.name }} </h2>
     <p> {{ restaurant.neighborhood }} </p>
     <p> {{ restaurant.address }} </p>
 
     <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
       <p>The restaurant has {{ restaurant.reviews.length }} reviews.</p>
-    </div>
+    </div> -->
+
+    <mat-card class="mat-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image" [style.background-image] = "'url({{restaurant.photograph}})'"></div>
+        <mat-card-title>{{ restaurant.name }}</mat-card-title>
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+      </mat-card-header>
+      <img mat-card-image [src]="restaurant.photograph" alt="">
+      <mat-card-content>
+        <p> {{ restaurant.neighborhood }} </p>
+        <p> {{ restaurant.address }} </p>
+
+        <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
+          <p>The restaurant has {{ restaurant.reviews.length }} reviews.</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
 </div>
 
 <ng-template #noRestaurantsTemplate>

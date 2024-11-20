@@ -10,6 +10,7 @@ h1 {
 
   main {
     padding: 1rem;
+    margin-bottom: 10px;
   }
 
   img {
@@ -23,4 +24,13 @@ h1 {
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
+  }
+
+  .example-card {
+    max-width: 400px;
+  }
+  
+  .example-header-image {
+    //background-image: url({{restaurant.photograph}});
+    background-size: cover;
   }
