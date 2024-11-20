@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Restaurant reviews';
+  title: String = 'Restaurant reviews';
+  //title: any;
 
   restaurantList = [
     {
@@ -84,36 +85,36 @@ export class AppComponent {
         Sunday: '12:00 pm - 3:00 pm, 5:00 pm - 11:00 pm'
       },
       reviews: [
-        {
-          name: 'Steph',
-          date: 'October 26, 2016',
-          rating: 4,
-          comments:
-            `Five star food, two star atmosphere. I would definitely get takeout from this place - but dont think I have
-              the energy to deal with the hipster ridiculousness again. By the time we left the wait was two hours long.`
-        },
-        {
-          name: 'Steve',
-          date: 'October 26, 2016',
-          rating: 4,
-          comments:
-            `This cozy Clinton Hill restaurant excels at both straightforward and unusual wood-fired pizzas. If you
-              want a taste of the latter, consider ordering the Emily, which is topped with mozzarella, pistachios,
-              truffled sottocenere cheese, and honey. The menu includes salads and a handful of starters, as well as
-              a burger that some meat connoisseurs consider to be among the best in the city.`
-        },
-        {
-          name: 'Sam',
-          date: 'October 26, 2016',
-          rating: 5,
-          comments:
-            `5 star atmosphere as it is very cozy with great staff. 5 star food as their Emmy burger is outrageously good.
-              and its on a pretzel bun.. Too juicy for its own good and downright addicting. Also try the Colony pizza.
-              Many others looked like worth competitors, but the Colony really found its way to my heart. when you start
-              with a great crust, top it with top notch cheese and sauce, you've got a winner. But, if you go a step further
-              and add the salty from the pepperoni, the sweet from the honey, and the spicy from the chili oil.... your mouth
-              is confused and happy at the same time.`
-        }
+        // {
+        //   name: 'Steph',
+        //   date: 'October 26, 2016',
+        //   rating: 4,
+        //   comments:
+        //     `Five star food, two star atmosphere. I would definitely get takeout from this place - but dont think I have
+        //       the energy to deal with the hipster ridiculousness again. By the time we left the wait was two hours long.`
+        // },
+        // {
+        //   name: 'Steve',
+        //   date: 'October 26, 2016',
+        //   rating: 4,
+        //   comments:
+        //     `This cozy Clinton Hill restaurant excels at both straightforward and unusual wood-fired pizzas. If you
+        //       want a taste of the latter, consider ordering the Emily, which is topped with mozzarella, pistachios,
+        //       truffled sottocenere cheese, and honey. The menu includes salads and a handful of starters, as well as
+        //       a burger that some meat connoisseurs consider to be among the best in the city.`
+        // },
+        // {
+        //   name: 'Sam',
+        //   date: 'October 26, 2016',
+        //   rating: 5,
+        //   comments:
+        //     `5 star atmosphere as it is very cozy with great staff. 5 star food as their Emmy burger is outrageously good.
+        //       and its on a pretzel bun.. Too juicy for its own good and downright addicting. Also try the Colony pizza.
+        //       Many others looked like worth competitors, but the Colony really found its way to my heart. when you start
+        //       with a great crust, top it with top notch cheese and sauce, you've got a winner. But, if you go a step further
+        //       and add the salty from the pepperoni, the sweet from the honey, and the spicy from the chili oil.... your mouth
+        //       is confused and happy at the same time.`
+        // }
       ]
     },
     {

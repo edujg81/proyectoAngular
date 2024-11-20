@@ -5,10 +5,21 @@
 </main>
 
 <div *ngFor="let restaurant of restaurantList">
-  <img src="{{ restaurant.photograph }}">
+  <!-- <img src="{{restaurant.photograph}}"> -->
+  <img [src]="restaurant.photograph">
   <h2> {{ restaurant.name }} </h2>
   <p> {{ restaurant.neighborhood }} </p>
   <p> {{ restaurant.address }} </p>
+
+  <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
+    The restaurant has {{ restaurant.reviews.length }} reviews.
+  </div>
 </div>
+
+<ng-template #noRestaurantsTemplate>
+  <div>
+    No reviews yet!
+  </div>
+</ng-template>
 
 <router-outlet />
