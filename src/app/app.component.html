@@ -8,7 +8,7 @@
   fxFill fxLayoutAlign="center center"
 >
 
-<div class="tarjeta" *ngFor="let restaurant of restaurantList" fxFlex="30">
+<div class="tarjeta" *ngFor="let restaurant of restaurantList" fxFlex.lt-sm="100" fxFlex.sm="45" fxFlex.gt-sm="30">
   <!-- <img src="{{restaurant.photograph}}"> -->
   
     <img [src]="restaurant.photograph">
