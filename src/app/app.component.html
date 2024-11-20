@@ -4,9 +4,11 @@
   </div>
 </main>
 
-<img src="{{ restaurantList[0].photograph }}">
-<h2> {{ restaurantList[0].name }} </h2>
-<p> {{ restaurantList[0].neighborhood }} </p>
-<p> {{ restaurantList[0].address }} </p>
+<div *ngFor="let restaurant of restaurantList">
+  <img src="{{ restaurant.photograph }}">
+  <h2> {{ restaurant.name }} </h2>
+  <p> {{ restaurant.neighborhood }} </p>
+  <p> {{ restaurant.address }} </p>
+</div>
 
 <router-outlet />
