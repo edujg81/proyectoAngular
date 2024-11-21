@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: String = 'Restaurant reviews';
-  //title: any;
+  isElevated: number = 0;
 
   restaurantList = [
     {
@@ -532,4 +532,8 @@ export class AppComponent {
   ];
 
   constructor() { }
+
+  resaltar(id: number) {
+    this.isElevated = id;
+  }
 }
