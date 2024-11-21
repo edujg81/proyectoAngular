@@ -13,10 +13,11 @@ export class AppComponent {
 
   restaurantList: Restaurant[] = [];
 
-  constructor(private restaurantService: RestaurantService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.restaurantList = this.restaurantService.getRestaurants();
+    const restaurantService = new RestaurantService();
+    this.restaurantList = restaurantService.getRestaurants();
   }
 
   resaltar(id: number) {

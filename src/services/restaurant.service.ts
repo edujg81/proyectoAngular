@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RESTAURANT_LIST } from './mocks';
+import { Restaurant } from './models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class RestaurantService {
     return RESTAURANT_LIST;
   }
 
-  getRestaurantById(id: number) {
-    return RESTAURANT_LIST.find((restaurant) => restaurant.id === id);
+  getRestaurantById(id: number): Restaurant[] {
+    return RESTAURANT_LIST;
   }
 }
