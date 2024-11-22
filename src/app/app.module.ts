@@ -12,9 +12,10 @@ import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent],
+  declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
