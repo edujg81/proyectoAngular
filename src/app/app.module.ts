@@ -9,19 +9,22 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CreateRestaurantComponent } from './create-restaurant/create-restaurant.component';
 
 @NgModule({
-  declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent, PageNotFoundComponent],
+  declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent, PageNotFoundComponent, CreateRestaurantComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
+    MatToolbarModule,
     RouterModule
   ],
   providers: [provideAnimationsAsync()],
