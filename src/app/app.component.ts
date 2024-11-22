@@ -9,18 +9,12 @@ import { RestaurantService } from '../services/restaurant.service';
 })
 export class AppComponent {
   title: String = 'Restaurant reviews';
-  isElevated: number = 0;
 
   restaurantList: Restaurant[] = [];
 
-  constructor() {}
+  constructor(private restaurantService: RestaurantService) {}
 
   ngOnInit() {
-    const restaurantService = new RestaurantService();
-    this.restaurantList = restaurantService.getRestaurants();
-  }
-
-  resaltar(id: number) {
-    this.isElevated = id;
+    this.restaurantList = this.restaurantService.getRestaurants();
   }
 }

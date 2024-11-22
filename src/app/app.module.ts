@@ -7,23 +7,19 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
-  declarations: [	
-    AppComponent
-   ],
+  declarations: [AppComponent, RestaurantComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    MatCardModule, 
-    MatButtonModule
+    MatCardModule,
+    MatButtonModule,
   ],
-  providers: [
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

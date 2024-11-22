@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Restaurant } from '../../services/models';
 
 @Component({
   selector: 'app-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.scss']
+  styleUrls: ['./restaurant.component.scss'],
 })
 export class RestaurantComponent implements OnInit {
+  @Input()
+  restaurant!: Restaurant;
 
-  constructor() { }
+  isElevated: number = 0;
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit() {}
+
+  resaltar(id: number) {
+    this.isElevated = id;
   }
-
 }
