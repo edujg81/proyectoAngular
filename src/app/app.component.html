@@ -1,18 +1,5 @@
-<app-header></app-header>
-<div
-  fxLayout="row wrap"
-  fxLayoutGap="20px"
-  fxFill
-  fxLayoutAlign="center stretch"
->
-  <div
-    *ngFor="let restaurant of restaurantList"
-    fxFlex.lt-sm="100"
-    fxFlex.sm="45"
-    fxFlex.gt-sm="30"
-  >
-    <app-restaurant [restaurant]="restaurant"></app-restaurant>
-  </div>
-
-  <router-outlet />
+<div id="component-container" class="container">
+  <app-restaurant-list></app-restaurant-list>
 </div>
+
+<router-outlet />

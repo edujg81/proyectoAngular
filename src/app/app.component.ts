@@ -8,11 +8,10 @@ import { RestaurantService } from '../services/restaurant.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  restaurantList: Restaurant[] = [];
-
-  constructor(private restaurantService: RestaurantService) {}
+  
+  constructor() {}
 
   ngOnInit() {
-    this.restaurantList = this.restaurantService.getRestaurants();
+  
   }
 }

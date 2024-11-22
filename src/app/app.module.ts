@@ -10,9 +10,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 
 @NgModule({
-  declarations: [AppComponent, RestaurantComponent, HeaderComponent],
+  declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

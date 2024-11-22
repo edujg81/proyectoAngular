@@ -1,0 +1,15 @@
+<app-header [title]="title"></app-header>
+<div
+  fxLayout="row wrap"
+  fxLayoutGap="20px"
+  fxFill
+  fxLayoutAlign="center center"
+>
+  <div
+    *ngFor="let restaurant of restaurantList"
+    fxFlex.lt-sm="100"
+    fxFlex.sm="45"
+    fxFlex.gt-sm="30"
+  >
+    <app-restaurant [restaurant]="restaurant"></app-restaurant>
+  </div>
