@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent, RestaurantComponent, HeaderComponent, RestaurantListComponent],
@@ -20,6 +21,7 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
     FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
+    RouterModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Restaurant } from '../services/models';
-import { RestaurantService } from '../services/restaurant.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +7,4 @@ import { RestaurantService } from '../services/restaurant.service';
 })
 export class AppComponent {
   
-  constructor() {}
-
-  ngOnInit() {
-  
-  }
 }
