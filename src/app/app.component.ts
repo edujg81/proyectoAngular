@@ -8,8 +8,6 @@ import { RestaurantService } from '../services/restaurant.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title: String = 'Restaurant reviews';
-
   restaurantList: Restaurant[] = [];
 
   constructor(private restaurantService: RestaurantService) {}

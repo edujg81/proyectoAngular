@@ -9,9 +9,10 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, RestaurantComponent],
+  declarations: [AppComponent, RestaurantComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
