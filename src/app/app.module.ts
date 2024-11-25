@@ -10,6 +10,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { RouterModule } from '@angular/router';
@@ -26,6 +27,7 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatIconModule,
     RouterModule
   ],
   providers: [provideAnimationsAsync()],

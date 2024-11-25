@@ -1,6 +1,11 @@
 <mat-toolbar color="accent">
     <span>Restaurants App</span>
     <span class="example-spacer"></span>
+    <button mat-icon-button (click)="cambiarTema()">
+      <mat-icon aria-hidden="false" aria-label="Tema claro/oscuro" fontIcon="brightness_medium"></mat-icon>
+    </button>
+    <mat-icon ></mat-icon>
+    <span class="example-spacer"></span>
     <button mat-button color = "primary" routerLink="/restaurants" routerLinkActive="active">Restaurants List</button>
     <button mat-button color = "warn" routerLink="/restaurants/new" routerLinkActive="active">Nuevo Restaurante</button>
 </mat-toolbar>

@@ -1,34 +1,40 @@
 @use '@angular/material' as mat;
-//@include mat-core();
 
-$my-primary: mat.define-palette(mat.$cyan-palette, 700);
-$my-accent: mat.define-palette(mat.$green-palette, 200);
-
-// The "warn" palette is optional and defaults to red if not specified.
+$my-primary: mat.define-palette(mat.$indigo-palette);
+$my-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 $my-warn: mat.define-palette(mat.$red-palette);
 
+// Tema oscuro
 $my-dark-theme: mat.define-dark-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
    warn: $my-warn,
- ),
- typography: mat.define-typography-config(),
- density: 0,
+ )
 ));
 
-$my-primary: mat.define-palette(mat.$indigo-palette, 700);
-$my-accent: mat.define-palette(mat.$light-green-palette, 200);
-
-// The "warn" palette is optional and defaults to red if not specified.
-$my-warn: mat.define-palette(mat.$red-palette);
+// Tema claro
 
 $my-light-theme: mat.define-light-theme((
  color: (
    primary: $my-primary,
    accent: $my-accent,
    warn: $my-warn,
- ),
- typography: mat.define-typography-config(),
- density: 0,
+ )
 ));
+
+@mixin theme($theme) {
+  @include mat.all-component-themes($theme);
+}
+
+// Exportar los temas
+.dark-theme {
+  @include theme($my-dark-theme);
+}
+
+.light-theme {
+  @include theme($my-light-theme);
+}
+
+// Tema por defecto
+@include theme($my-light-theme);

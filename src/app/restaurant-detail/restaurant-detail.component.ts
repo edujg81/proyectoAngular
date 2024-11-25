@@ -9,6 +9,7 @@ import { RestaurantService } from '../../services/restaurant.service';
   styleUrl: './restaurant-detail.component.scss',
 })
 export class RestaurantDetailComponent implements OnInit {
+  title = 'Restaurant detail';
   restaurant!: Restaurant | undefined;
 
   constructor(

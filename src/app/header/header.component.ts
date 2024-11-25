@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,19 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
   @Input() title!: String;
+
+  private isLightTheme: boolean = true;
+
+  constructor(private render: Renderer2) {}
+
+  cambiarTema() {
+
+    if (this.isLightTheme) {
+      this.render.addClass(document.body, 'dark-theme');
+    } else {
+      this.render.removeClass(document.body, 'dark-theme');
+    }
+
+    this.isLightTheme = !this.isLightTheme;
+  }
 }

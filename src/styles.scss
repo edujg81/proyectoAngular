@@ -1,17 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-@use '@angular/material' as mat;
+// @use '@angular/material' as mat;
 
-@include mat.core();
+// @include mat.core();
 
-// Importar los temas y la tipografía
-@import './styles/myTheme.scss';
 
 //html, body { height: 100%; }
 body { 
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
-:root {
-    @include mat.all-component-themes($my-light-theme);
-}
+// :root {
+//     @include mat.all-component-themes($my-light-theme);
+// }
