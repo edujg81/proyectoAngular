@@ -19,7 +19,6 @@ export class HeaderComponent {
     } else {
       this.render.removeClass(document.body, 'dark-theme');
     }
-
     this.isLightTheme = !this.isLightTheme;
   }
 }

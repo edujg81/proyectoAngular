@@ -1,1 +1,134 @@
-<p>create-restaurant works!</p>
+<app-header [title]="title"></app-header>
+<form [formGroup]="createRestaurantForm">
+  <div fxLayoutGap="5px">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label> <input formControlName="name" matInput />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input formControlName="address" matInput placeholder="Enter address" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Neighborhood</mat-label>
+      <input
+        formControlName="neighborhood"
+        matInput
+        placeholder="Enter Neighborhood"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Photograph</mat-label>
+      <input
+        formControlName="photograph"
+        matInput
+        placeholder="Enter photograph"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Cuisine type</mat-label>
+      <input
+        formControlName="cuisine_type"
+        matInput
+        placeholder="Enter cuisine type"
+      />
+    </mat-form-field>
+    <div
+      formGroupName="latlng"
+      fxLayout.xs="column"
+      fxLayoutGap="5px"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-between"
+    >
+      <!--LATITUD Y LONGITUD-->
+      <mat-form-field fxFlex="auto" appearance="fill">
+        <mat-label>Latitude</mat-label>
+        <input
+          formControlName="lat"
+          type="number"
+          matInput
+          placeholder="Enter latitude"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="auto" appearance="fill">
+        <mat-label>Longitude</mat-label>
+        <input
+          formControlName="lng"
+          type="number"
+          matInput
+          placeholder="Enter longitude"
+        />
+      </mat-form-field>
+    </div>
+    <h3>Operating hours</h3>
+    <div
+      formGroupName="operating_hours"
+      fxLayout.xs="column"
+      fxLayout="row wrap"
+      fxLayoutGap="5px"
+      fxLayoutAlign="space-between"
+    >
+      <!--HORAS DE APERTURA-->
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Monday</mat-label>
+        <input
+          formControlName="Monday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Tuesday</mat-label>
+        <input
+          formControlName="Tuesday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Wednesday</mat-label>
+        <input
+          formControlName="Wednesday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Thursday</mat-label>
+        <input
+          formControlName="Thursday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Friday</mat-label>
+        <input
+          formControlName="Friday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Saturday</mat-label>
+        <input
+          formControlName="Saturday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
+        <mat-label>Sunday</mat-label>
+        <input
+          formControlName="Sunday"
+          matInput
+          placeholder="Enter operating hours"
+        />
+      </mat-form-field>
+    </div>
+  </div>
+  <button type="submit" mat-raised-button color="primary" (click)="send()">
+    Enviar
+  </button>
+</form>
+
+{{restaurant | json}}
