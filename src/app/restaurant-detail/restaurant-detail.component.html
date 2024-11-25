@@ -1,0 +1,11 @@
+<div fxLayout="row" fxLayoutAlign="center stretch">
+  <app-restaurant [restaurant]="restaurant!"> </app-restaurant>
+</div>
+<div fxLayout="row" fxLayoutAlign="center stretch">
+  <a routerLink="/restaurants/{{ restaurant!.id! - 1 }}" mat-raised-button>
+    Previous restaurant
+  </a>
+  <a routerLink="/restaurants/{{ restaurant!.id! + 1 }}" mat-raised-button>
+    Next restaurant
+  </a>
+</div>

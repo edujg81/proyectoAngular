@@ -12,7 +12,7 @@ export class RestaurantService {
     return RESTAURANT_LIST;
   }
 
-  getRestaurantById(id: number): Restaurant[] {
-    return RESTAURANT_LIST;
+  getRestaurantById(id: number) {
+    return id > 0 && id < 11 ? RESTAURANT_LIST[id - 1] : undefined;
   }
 }
