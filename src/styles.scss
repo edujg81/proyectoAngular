@@ -10,6 +10,10 @@ body {
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
+button {
+    margin-right: 4px;
+  }
+
 // :root {
 //     @include mat.all-component-themes($my-light-theme);
 // }
