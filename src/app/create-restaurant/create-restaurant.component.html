@@ -1,8 +1,17 @@
 <app-header [title]="title"></app-header>
+
 <form [formGroup]="createRestaurantForm">
   <div fxLayoutGap="5px">
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label> <input formControlName="name" matInput />
+      <div *ngIf="createRestaurantForm.get('name')?.invalid && createRestaurantForm.get('name')?.dirty && createRestaurantForm.get('name')?.touched">
+        <mat-error *ngIf="createRestaurantForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+        <mat-error *ngIf="createRestaurantForm.get('name')?.hasError('minlength')">
+          Name must be at least 5 characters
+        </mat-error>
+      </div>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Address</mat-label>
@@ -75,6 +84,10 @@
           matInput
           placeholder="Enter operating hours"
         />
+          <mat-error *ngIf="createRestaurantForm.get('operating_hours')?.get('Monday')?.hasError('wrong_operating_hours')">
+            {{createRestaurantForm.get('operating_hours')?.get('Monday')?.getError('wrong_operating_hours')}}
+            Monday is required
+          </mat-error>
       </mat-form-field>
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Tuesday</mat-label>
@@ -126,9 +139,7 @@
       </mat-form-field>
     </div>
   </div>
-  <button type="submit" mat-raised-button color="primary" (click)="send()">
-    Enviar
+  <button type="submit" mat-raised-button color="primary" (click)="send()" [disabled]="createRestaurantForm.invalid">
+    {{ isEdit ? 'Guardar' : 'Crear' }}
   </button>
 </form>
-
-{{restaurant | json}}

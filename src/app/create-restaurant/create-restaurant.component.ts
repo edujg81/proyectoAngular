@@ -5,11 +5,11 @@ import {
   FormBuilder,
   FormGroup,
   ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { RestaurantService } from '../../services/restaurant.service';
-import { PrintHook } from '@angular/flex-layout';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-create-restaurant',
@@ -17,13 +17,21 @@ import { PrintHook } from '@angular/flex-layout';
   styleUrl: './create-restaurant.component.scss',
 })
 export class CreateRestaurantComponent implements OnInit {
-  title = "Registrar restaurante"
+  title = 'Registrar restaurante';
+  restaurant!: Restaurant | undefined | null;
+  restaurantId!: number | null;
+  isEdit = false;
 
-  restaurant!: Restaurant;
+  createRestaurantForm!: FormGroup;
 
-  createRestaurantForm: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private restaurantService: RestaurantService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.restaurant! = null as unknown as Restaurant; // Initialize with null
 
-  constructor(private fb: FormBuilder, private restaurantService : RestaurantService) {
     this.createRestaurantForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       neighborhood: ['', [Validators.required]],
@@ -35,31 +43,61 @@ export class CreateRestaurantComponent implements OnInit {
         lng: ['', [Validators.required]],
       }),
       operating_hours: this.fb.group({
-        Monday: ['', [Validators.required]],
-        Tuesday: ['', [Validators.required]],
-        Wednesday: ['', [Validators.required]],
-        Thursday: ['', [Validators.required]],
-        Friday: ['', [Validators.required]],
-        Saturday: ['', [Validators.required]],
-        Sunday: ['', [Validators.required]],
+        Monday: ['', [Validators.required, this.validateOperatingHours]],
+        Tuesday: ['', [Validators.required, this.validateOperatingHours]],
+        Wednesday: ['', [Validators.required, this.validateOperatingHours]],
+        Thursday: ['', [Validators.required, this.validateOperatingHours]],
+        Friday: ['', [Validators.required, this.validateOperatingHours]],
+        Saturday: ['', [Validators.required, this.validateOperatingHours]],
+        Sunday: ['', [Validators.required, this.validateOperatingHours]],
       }),
     });
   }
   ngOnInit(): void {
+    this.restaurantId = +this.route.snapshot.paramMap.get('id')!;
 
+    if (this.restaurantId) {
+      this.route.paramMap.subscribe((params: ParamMap) => {
+        this.restaurant = this.restaurantService.getRestaurantById(
+          this.restaurantId!
+        );
+
+        this.createRestaurantForm.patchValue(this.restaurant!);
+        this.isEdit = true;
+        this.title = 'Editar restaurante';
+      });
+    }
   }
+
+   validateOperatingHours(
+    control: AbstractControl
+  ): { [key: string]: any } | null {
+    const pattern =
+      '^\\d?\\d:\\d?\\d (pm|am) - \\d?\\d:\\d?\\d (pm|am)(, \\d?\\d:\\d?\\d (pm|am) - \\d?\\d:\\d?\\d (pm|am))?$';
+    const regex = new RegExp(pattern);
+    const value = control.value;
+    const isValid = regex.test(value);
+    if (isValid) {
+      return null;
+    } else {
+      return { wrong_operating_hours: 'Wrong format' };
+    }
+  }
+
   send() {
     console.log(this.createRestaurantForm.value);
 
+    // Se asignan los valores del formulario al objeto restaurant
     this.restaurant = this.createRestaurantForm.value;
 
-    if (this.createRestaurantForm.valid){
-      const control = this.restaurantService.createRestaurant(this.restaurant);
-      
-      if (control){
-        console.log("Restaurante creado")
+    if (this.createRestaurantForm.valid) {
+      const control = this.restaurantService.createRestaurant(this.restaurant!);
+
+      if (control) {
+        console.log('Restaurante creado');
+        console.log(this.restaurant);
       } else {
-        console.log("Error al crear restaurante")
+        console.log('Error al crear restaurante');
       }
     }
   }

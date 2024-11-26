@@ -14,6 +14,9 @@ const routes: Routes = [
   { path: 'restaurants/new',
     component: CreateRestaurantComponent
   },
+  { path: 'restaurants/edit/:id',
+    component: CreateRestaurantComponent
+  },
   { path: 'restaurants/:id',
     component: RestaurantDetailComponent
   },
