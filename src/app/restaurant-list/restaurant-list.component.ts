@@ -14,6 +14,17 @@ export class RestaurantListComponent {
   constructor(private restaurantService: RestaurantService) {}
 
   ngOnInit() {
-    this.restaurantList = this.restaurantService.getRestaurants();
+    //this.restaurantList = this.restaurantService.getRestaurants();
+    this.restaurantService.getRestaurantsHttp().subscribe({
+      next: (data) => {
+        this.restaurantList = data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
   }
 }

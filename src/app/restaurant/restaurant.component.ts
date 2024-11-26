@@ -7,7 +7,7 @@ import { Restaurant } from '../../services/models';
   styleUrls: ['./restaurant.component.scss'],
 })
 export class RestaurantComponent implements OnInit {
-  @Input() restaurant!: Restaurant;
+  @Input() restaurant!: any;
   
   isElevated: number = 0;
 

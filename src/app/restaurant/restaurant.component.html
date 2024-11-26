@@ -1,27 +1,27 @@
 <mat-card
   id="tarjeta"
   class="mat-card"
-  [class.elevate]="isElevated === restaurant.id"
+  [class.elevate]="isElevated === restaurant?.id"
   appearance="outlined"
   (mouseover)="resaltar(restaurant.id!)"
   (mouseout)="resaltar(0)"
-  routerLink="/restaurants/{{ restaurant.id }}"
+  routerLink="/restaurants/{{ restaurant?.id }}"
 >
   <mat-card-header>
     <div
       mat-card-avatar
       class="example-header-image"
-      [style.background-image]="'url(' + restaurant.photograph + ')'"
+      [style.background-image]="'url(' + restaurant?.photograph + ')'"
     ></div>
-    <mat-card-title>{{ restaurant.name | uppercase }}</mat-card-title>
-    <mat-card-subtitle>{{ restaurant.neighborhood }}</mat-card-subtitle>
+    <mat-card-title>{{ restaurant?.name | uppercase }}</mat-card-title>
+    <mat-card-subtitle>{{ restaurant?.neighborhood }}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="restaurant.photograph" alt="" />
+  <img mat-card-image [src]="restaurant?.photograph" alt="" />
   <mat-card-content>
-    <p>{{ restaurant.address }}</p>
+    <p>{{ restaurant?.address }}</p>
 
-    <div *ngIf="restaurant.reviews.length > 0; else noRestaurantsTemplate">
-      <p>The restaurant has {{ restaurant.reviews.length }} reviews.</p>
+    <div *ngIf="restaurant?.reviews.length > 0; else noRestaurantsTemplate">
+      <p>The restaurant has {{ restaurant?.reviews.length }} reviews.</p>
     </div>
   </mat-card-content>
   <mat-card-actions>
@@ -29,11 +29,11 @@
       [disabled]="false"
       mat-raised-button
       color="primary"
-      [routerLink]="'/restaurants/' + restaurant.id"
+      [routerLink]="'/restaurants/' + restaurant?.id"
     >
       DETAIL
     </button>
-    <button mat-raised-button color="accent" [routerLink]="'/restaurants/edit/' + restaurant.id">EDIT</button>
+    <button mat-raised-button color="accent" [routerLink]="'/restaurants/edit/' + restaurant?.id">EDIT</button>
   </mat-card-actions>
 </mat-card>
 

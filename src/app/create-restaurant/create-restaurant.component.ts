@@ -58,15 +58,26 @@ export class CreateRestaurantComponent implements OnInit {
 
     if (this.restaurantId) {
       this.route.paramMap.subscribe((params: ParamMap) => {
-        this.restaurant = this.restaurantService.getRestaurantById(
-          this.restaurantId!
-        );
+        // this.restaurant = this.restaurantService.getRestaurantById(
+        //   this.restaurantId!
+        // );
+
+        this.restaurantService.getRestaurantByIdHttp(this.restaurantId!).subscribe({
+          next: (data) => {
+            this.restaurant = data;
+          },
+          error: (error) => {
+            console.log(error);
+          }
+        })
 
         this.createRestaurantForm.patchValue(this.restaurant!);
         this.isEdit = true;
         this.title = 'Editar restaurante';
       });
     }
+
+    // this.restaurantService.getSendDataObservable().subscribe((data) => {console.log(data)});
   }
 
    validateOperatingHours(

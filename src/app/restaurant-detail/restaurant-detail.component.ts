@@ -21,9 +21,23 @@ export class RestaurantDetailComponent implements OnInit {
   ngOnInit(): void {
     // Sacamos el id de la url
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.restaurant = this.restaurantService.getRestaurantById(
-        Number(params.get('id'))
-      );
+      // LOCAL
+      // this.restaurant = this.restaurantService.getRestaurantById(
+      //   Number(params.get('id'))
+      // );
+
+      // SERVIDOR
+      this.restaurantService.getRestaurantByIdHttp(Number(params.get('id'))).subscribe({
+
+        next: (data) => {
+          this.restaurant = data;
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
     });
+
+    // this.restaurantService.sendData.next(this.restaurant!);
   }
 }

@@ -3,10 +3,10 @@
   <app-restaurant [restaurant]="restaurant!"> </app-restaurant>
 </div>
 <div fxLayout="row" fxLayoutAlign="center stretch">
-  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant!.id! - 1)">
+  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant?.id! - 1)">
     Previous restaurant
   </button>
-  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant!.id! + 1)">
+  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant?.id! + 1)">
     Next restaurant
   </button>
 </div>
