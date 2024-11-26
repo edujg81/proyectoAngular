@@ -65,15 +65,14 @@ export class CreateRestaurantComponent implements OnInit {
         this.restaurantService.getRestaurantByIdHttp(this.restaurantId!).subscribe({
           next: (data) => {
             this.restaurant = data;
+            this.createRestaurantForm.patchValue(this.restaurant!);
+            this.isEdit = true;
+            this.title = 'Editar restaurante';
           },
           error: (error) => {
             console.log(error);
           }
         })
-
-        this.createRestaurantForm.patchValue(this.restaurant!);
-        this.isEdit = true;
-        this.title = 'Editar restaurante';
       });
     }
 
@@ -96,19 +95,42 @@ export class CreateRestaurantComponent implements OnInit {
   }
 
   send() {
-    console.log(this.createRestaurantForm.value);
-
+    console.log("VALIDO: " + this.createRestaurantForm.valid);
+    console.log("MODO EDIT: " + this.isEdit);
     // Se asignan los valores del formulario al objeto restaurant
-    this.restaurant = this.createRestaurantForm.value;
+    //this.restaurant = this.createRestaurantForm.value;
 
     if (this.createRestaurantForm.valid) {
-      const control = this.restaurantService.createRestaurant(this.restaurant!);
-
-      if (control) {
-        console.log('Restaurante creado');
-        console.log(this.restaurant);
-      } else {
-        console.log('Error al crear restaurante');
+    
+      if (this.isEdit) {
+        this.restaurantService.editRestaurant(this.restaurantId!, this.createRestaurantForm.value!).subscribe({
+          next: (data) => {
+            this.restaurantService.sendData.next(true);
+            console.log('Restaurante editado: ' + data);
+          },
+          error: (error) => {
+            console.log('Error al editar restaurante: ' + error);
+          }
+        });
+      }
+      else {
+        
+        this.restaurantService.createRestaurantHttp(this.createRestaurantForm.value!).subscribe({
+          next: (data) => {
+            this.restaurantService.sendData.next(true);
+            console.log('Restaurante creado: ' + data);
+          },
+          error: (error) => {
+            console.log('Error al crear restaurante: ' + error);
+          }
+        })
+        //const control = this.restaurantService.createRestaurant(this.restaurant!);
+      // if (control) {
+      //   console.log('Restaurante creado');
+      //   console.log(this.restaurant);
+      // } else {
+      //   console.log('Error al crear restaurante');
+      // }
       }
     }
   }

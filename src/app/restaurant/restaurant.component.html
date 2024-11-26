@@ -5,13 +5,13 @@
   appearance="outlined"
   (mouseover)="resaltar(restaurant.id!)"
   (mouseout)="resaltar(0)"
-  routerLink="/restaurants/{{ restaurant?.id }}"
 >
   <mat-card-header>
     <div
       mat-card-avatar
       class="example-header-image"
       [style.background-image]="'url(' + restaurant?.photograph + ')'"
+      [routerLink]="'/restaurants/' + restaurant?.id"
     ></div>
     <mat-card-title>{{ restaurant?.name | uppercase }}</mat-card-title>
     <mat-card-subtitle>{{ restaurant?.neighborhood }}</mat-card-subtitle>
@@ -34,6 +34,7 @@
       DETAIL
     </button>
     <button mat-raised-button color="accent" [routerLink]="'/restaurants/edit/' + restaurant?.id">EDIT</button>
+    <button mat-raised-button color="warn" (clic)="deleteRestaurant(restaurant?.id!)">DELETE</button>
   </mat-card-actions>
 </mat-card>
 

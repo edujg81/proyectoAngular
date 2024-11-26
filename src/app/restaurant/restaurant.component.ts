@@ -10,6 +10,7 @@ export class RestaurantComponent implements OnInit {
   @Input() restaurant!: any;
   
   isElevated: number = 0;
+  restaurantService: any;
 
   constructor() {}
 
@@ -17,5 +18,11 @@ export class RestaurantComponent implements OnInit {
 
   resaltar(id: number) {
     this.isElevated = id;
+  }
+
+  deleteRestaurant(id: number) {
+    this.restaurantService.deleteRestaurant(id).subscribe(() => {
+      console.log('Se ha borrado el restaurante');
+    });
   }
 }

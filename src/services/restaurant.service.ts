@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class RestaurantService {
-  //sendData: Subject<any> = new Subject<any>();
+  sendData: Subject<any> = new Subject<any>();
 
   url = 'http://107.191.63.129:8000/restaurants/';
 
   constructor(private http: HttpClient) {}
 
-  // getSendDataObservable() {
-  //   return this.sendData.asObservable();
-  // }
+  getSendDataObservable() {
+     return this.sendData.asObservable();
+  }
 
   getRestaurants() {
     return RESTAURANT_LIST;
