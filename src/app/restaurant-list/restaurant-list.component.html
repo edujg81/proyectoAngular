@@ -1,16 +1,22 @@
+<!-- Se incluye el componente de cabecera al que se le pasa el Título definido en restaurant-list.component.ts -->
 <app-header [title]="title"></app-header>
+
+<!-- Se recorre la lista de restaurantes y se incluyen los componentes de restaurantes -->
 <div
+  class="container-list"
   fxLayout="row wrap"
-  fxLayoutGap="20px"
+  fxLayoutGap="10px"
   fxFill
-  fxLayoutAlign="center center"
+  fxLayoutAlign="center stretch"
 >
   <div
     *ngFor="let restaurant of restaurantList"
     fxFlex.lt-sm="100"
     fxFlex.sm="45"
     fxFlex.gt-sm="30"
+    fxLayoutAlign="center space-evenly"
   >
+    <!-- Se incluye el componente de restaurant al que se le pasa el restaurante que debe mostrar -->
     <app-restaurant [restaurant]="restaurant"></app-restaurant>
   </div>
 </div>

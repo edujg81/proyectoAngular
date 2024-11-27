@@ -5,24 +5,17 @@ import { CreateRestaurantComponent } from './create-restaurant/create-restaurant
 import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+// Definimos las rutas de la aplicación
 const routes: Routes = [
   { path: '', redirectTo: 'restaurants', pathMatch: 'full' },
   {
     path: 'restaurants',
-    component: RestaurantListComponent
+    component: RestaurantListComponent,
   },
-  { path: 'restaurants/new',
-    component: CreateRestaurantComponent
-  },
-  { path: 'restaurants/edit/:id',
-    component: CreateRestaurantComponent
-  },
-  { path: 'restaurants/:id',
-    component: RestaurantDetailComponent
-  },
-  { path: '**',
-    component: PageNotFoundComponent
-  }
+  { path: 'restaurants/new', component: CreateRestaurantComponent },
+  { path: 'restaurants/edit/:id', component: CreateRestaurantComponent },
+  { path: 'restaurants/:id', component: RestaurantDetailComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

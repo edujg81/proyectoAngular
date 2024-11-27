@@ -22,6 +22,7 @@ import { RestaurantDetailComponent } from './restaurant-detail/restaurant-detail
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+// Aquí se declaran todos lo componentes de la app y se importan los modulos necesarios
 @NgModule({
   declarations: [
     AppComponent,

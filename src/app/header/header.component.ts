@@ -3,7 +3,7 @@ import { Component, Input, Renderer2 } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   @Input() title!: String;
@@ -12,8 +12,8 @@ export class HeaderComponent {
 
   constructor(private render: Renderer2) {}
 
+  // Metodo para cambiar el tema
   cambiarTema() {
-
     if (this.isLightTheme) {
       this.render.addClass(document.body, 'dark-theme');
     } else {

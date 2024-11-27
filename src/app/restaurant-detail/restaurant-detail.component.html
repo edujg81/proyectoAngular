@@ -1,12 +1,23 @@
+<!-- Se incluye el componente de cabecera al que se le pasa el título definido en restaurant-detail.component.ts -->
 <app-header [title]="title"></app-header>
+
+<!-- Se incluye el componente de restaurant al que se le pasa el restaurante que debe mostrar -->
 <div fxLayout="row" fxLayoutAlign="center stretch">
   <app-restaurant [restaurant]="restaurant!"> </app-restaurant>
 </div>
+
+<!-- Se incluyen botones para navegar entre los restaurantes -->
 <div fxLayout="row" fxLayoutAlign="center stretch">
-  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant?.id! - 1)">
+  <button
+    mat-raised-button
+    [routerLink]="'/restaurants/' + (restaurant?.id! - 1)"
+  >
     Previous restaurant
   </button>
-  <button mat-raised-button [routerLink]="'/restaurants/' + (restaurant?.id! + 1)">
+  <button
+    mat-raised-button
+    [routerLink]="'/restaurants/' + (restaurant?.id! + 1)"
+  >
     Next restaurant
   </button>
 </div>

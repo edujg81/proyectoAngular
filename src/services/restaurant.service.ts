@@ -7,15 +7,17 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
+
+// Servicio encargado de gestionar los restaurantes
 export class RestaurantService {
-  sendData: Subject<any> = new Subject<any>();
+  sendData: Subject<any> = new Subject<void>();
 
   url = 'http://107.191.63.129:8000/restaurants/';
 
   constructor(private http: HttpClient) {}
 
   getSendDataObservable() {
-     return this.sendData.asObservable();
+    return this.sendData.asObservable();
   }
 
   getRestaurants() {
@@ -41,7 +43,6 @@ export class RestaurantService {
     return RESTAURANT_LIST.push(restaurant);
   }
 
-  
   createRestaurantHttp(data: Restaurant) {
     return this.http.post<Restaurant>(
       'http://107.191.63.129:8000/restaurants/',
@@ -54,7 +55,7 @@ export class RestaurantService {
       data
     );
   }
-  deleteRestaurant(id: number) {
+  deleteRestaurant(id: number): Observable<Restaurant> {
     return this.http.delete<Restaurant>(
       `http://107.191.63.129:8000/restaurants/${id}/`
     );

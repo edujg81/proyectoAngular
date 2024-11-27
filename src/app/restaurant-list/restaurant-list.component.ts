@@ -5,7 +5,7 @@ import { Restaurant } from '../../services/models';
 @Component({
   selector: 'app-restaurant-list',
   templateUrl: './restaurant-list.component.html',
-  styleUrl: './restaurant-list.component.scss'
+  styleUrl: './restaurant-list.component.scss',
 })
 export class RestaurantListComponent {
   title = 'Restaurants reviews';
@@ -14,7 +14,17 @@ export class RestaurantListComponent {
   constructor(private restaurantService: RestaurantService) {}
 
   ngOnInit() {
-    //this.restaurantList = this.restaurantService.getRestaurants();
+    // Cargamos los restaurantes
+    this.loadRestaurants();
+
+    // Nos suscribimos al observable que nos indica si hay cambios en la lista de restaurantes y los recargamos
+    this.restaurantService.getSendDataObservable().subscribe((data) => {
+      this.loadRestaurants();
+    });
+  }
+
+  // Metodo encargado de cargar los restaurantes
+  loadRestaurants() {
     this.restaurantService.getRestaurantsHttp().subscribe({
       next: (data) => {
         this.restaurantList = data;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Restaurant } from '../../services/models';
 import { RestaurantService } from '../../services/restaurant.service';
 
@@ -14,12 +14,11 @@ export class RestaurantDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private restaurantService: RestaurantService,
-    private router: Router
+    private restaurantService: RestaurantService
   ) {}
 
   ngOnInit(): void {
-    // Sacamos el id de la url
+    // Sacamos el id de la url y se cargan los datos del restaurante correspondiente
     this.route.paramMap.subscribe((params: ParamMap) => {
       // LOCAL
       // this.restaurant = this.restaurantService.getRestaurantById(
@@ -27,17 +26,16 @@ export class RestaurantDetailComponent implements OnInit {
       // );
 
       // SERVIDOR
-      this.restaurantService.getRestaurantByIdHttp(Number(params.get('id'))).subscribe({
-
-        next: (data) => {
-          this.restaurant = data;
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      })
+      this.restaurantService
+        .getRestaurantByIdHttp(Number(params.get('id')))
+        .subscribe({
+          next: (data) => {
+            this.restaurant = data;
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
     });
-
-    // this.restaurantService.sendData.next(this.restaurant!);
   }
 }

@@ -1,15 +1,39 @@
+<!-- Muestra barra de cabecera con botón para cambiar tema (claro/oscuro) y botones de navegación -->
 <mat-toolbar color="accent">
-    <span>Restaurants App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button (click)="cambiarTema()">
-      <mat-icon aria-hidden="false" aria-label="Tema claro/oscuro" fontIcon="brightness_medium"></mat-icon>
-    </button>
-    <mat-icon ></mat-icon>
-    <span class="example-spacer"></span>
-    <button mat-button color = "primary" routerLink="/restaurants" routerLinkActive="active">Restaurants List</button>
-    <button mat-button color = "warn" routerLink="/restaurants/new" routerLinkActive="active">Nuevo Restaurante</button>
+  <!-- Nombre de la aplicación -->
+  <span>Restaurants App</span>
+  <!-- Incluye espacio entre el nombre de la aplicación y los botones -->
+  <span class="example-spacer"></span>
+  <!-- Botón para cambiar el tema -->
+  <button mat-icon-button (click)="cambiarTema()">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Tema claro/oscuro"
+      fontIcon="brightness_medium"
+    ></mat-icon>
+  </button>
+  <!-- Incluye espacio entre el botón de tema y los botones de navegación -->
+  <span class="example-spacer"></span>
+  <!-- Botones de navegación -->
+  <button
+    mat-button
+    color="primary"
+    routerLink="/restaurants"
+    routerLinkActive="active"
+  >
+    Restaurants List
+  </button>
+  <button
+    mat-button
+    color="warn"
+    routerLink="/restaurants/new"
+    routerLinkActive="active"
+  >
+    Nuevo Restaurante
+  </button>
 </mat-toolbar>
 
+<!-- Muestra el título recibido como parámetro -->
 <main>
-    <h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>
 </main>

@@ -1,3 +1,4 @@
+<!-- Muestra tarjeta de restaurante. Añade la clase 'elevate' si el ID del restaurante coincide con 'isElevated'. Esto se utiliza para resaltar la tarjeta al pasar el ratón. -->
 <mat-card
   id="tarjeta"
   class="mat-card"
@@ -6,7 +7,9 @@
   (mouseover)="resaltar(restaurant.id!)"
   (mouseout)="resaltar(0)"
 >
+  <!-- Cabecera de la tarjeta -->
   <mat-card-header>
+    <!-- Define la imagen de avatar de la tarjeta. Navega al detalle del restaurante al hacer clic en el avatar. -->
     <div
       mat-card-avatar
       class="example-header-image"
@@ -14,17 +17,27 @@
       [routerLink]="'/restaurants/' + restaurant?.id"
     ></div>
     <mat-card-title>{{ restaurant?.name | uppercase }}</mat-card-title>
+    <!-- Muestra el nombre del restaurante en mayúsculas. -->
     <mat-card-subtitle>{{ restaurant?.neighborhood }}</mat-card-subtitle>
+    <!-- Muestra el barrio del restaurante. -->
   </mat-card-header>
   <img mat-card-image [src]="restaurant?.photograph" alt="" />
+  <!-- Imagen principal del restaurante. -->
+
+  <!-- Contenido de la tarjeta -->
   <mat-card-content>
     <p>{{ restaurant?.address }}</p>
+    <!-- Muestra la dirección del restaurante. -->
 
     <div *ngIf="restaurant?.reviews.length > 0; else noRestaurantsTemplate">
+      <!-- Si hay reseñas, muestra su conteo. -->
       <p>The restaurant has {{ restaurant?.reviews.length }} reviews.</p>
     </div>
   </mat-card-content>
+
+  <!-- Acciones de la tarjeta -->
   <mat-card-actions>
+    <!-- Muestra botón DETAIL habilitado que navega al detalle del restaurante. Muestra el botón en color primario. -->
     <button
       [disabled]="false"
       mat-raised-button
@@ -33,13 +46,29 @@
     >
       DETAIL
     </button>
-    <button mat-raised-button color="accent" [routerLink]="'/restaurants/edit/' + restaurant?.id">EDIT</button>
-    <button mat-raised-button color="warn" (clic)="deleteRestaurant(restaurant?.id!)">DELETE</button>
+    <!-- Botón EDIT que navega a la edición del restaurante. Muestra el botón en color acentuado. -->
+    <button
+      mat-raised-button
+      color="accent"
+      [routerLink]="'/restaurants/edit/' + restaurant?.id"
+    >
+      EDIT
+    </button>
+    <!-- Botón DELETE que llama al método 'deleteRestaurant' para eliminar el restaurante. Muestra el botón en color de advertencia (normalmente rojo). -->
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteRestaurant(restaurant?.id)"
+    >
+      DELETE
+    </button>
   </mat-card-actions>
 </mat-card>
 
 <ng-template #noRestaurantsTemplate>
+  <!-- Plantilla alternativa que se muestra si no hay reseñas. -->
   <div>
     <p>No reviews yet!</p>
+    <!-- Muestra un mensaje indicando que no hay reseñas. -->
   </div>
 </ng-template>

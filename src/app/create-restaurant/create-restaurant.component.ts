@@ -4,12 +4,10 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { RestaurantService } from '../../services/restaurant.service';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { of } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-create-restaurant',
@@ -21,17 +19,18 @@ export class CreateRestaurantComponent implements OnInit {
   restaurant!: Restaurant | undefined | null;
   restaurantId!: number | null;
   isEdit = false;
-
   createRestaurantForm!: FormGroup;
 
+  // Método constructor encargado de definir el formulario
   constructor(
     private fb: FormBuilder,
     private restaurantService: RestaurantService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {
+    // Se inicializa la variable "restaurant" a null, indicando que puede ser de tipo unknown(desconocido) o Restaurant
     this.restaurant! = null as unknown as Restaurant; // Initialize with null
 
+    // Definición del FormGroup
     this.createRestaurantForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(5)]],
       neighborhood: ['', [Validators.required]],
@@ -53,33 +52,38 @@ export class CreateRestaurantComponent implements OnInit {
       }),
     });
   }
+
+  // Metodo encargado de inicializar el componente. Si existe un id en la url, se obtiene el restaurante correspondiente
   ngOnInit(): void {
+    // Obtenemos el id de la url
     this.restaurantId = +this.route.snapshot.paramMap.get('id')!;
 
+    // Si el id de la url es distinto de null, obtenemos el restaurante
     if (this.restaurantId) {
       this.route.paramMap.subscribe((params: ParamMap) => {
-        // this.restaurant = this.restaurantService.getRestaurantById(
-        //   this.restaurantId!
-        // );
-
-        this.restaurantService.getRestaurantByIdHttp(this.restaurantId!).subscribe({
-          next: (data) => {
-            this.restaurant = data;
-            this.createRestaurantForm.patchValue(this.restaurant!);
-            this.isEdit = true;
-            this.title = 'Editar restaurante';
-          },
-          error: (error) => {
-            console.log(error);
-          }
-        })
+        this.restaurantService
+          .getRestaurantByIdHttp(this.restaurantId!)
+          .subscribe({
+            next: (data) => {
+              // Se informa la variable "restaurant" con los datos obtenidos
+              this.restaurant = data;
+              // Se cargan los datos en el formulario
+              this.createRestaurantForm.patchValue(this.restaurant!);
+              // Se indica que estamos editando
+              this.isEdit = true;
+              // Se cambia el título
+              this.title = 'Editar restaurante';
+            },
+            error: (error) => {
+              console.log(error);
+            },
+          });
       });
     }
-
-    // this.restaurantService.getSendDataObservable().subscribe((data) => {console.log(data)});
   }
 
-   validateOperatingHours(
+  // Metodo encargado de validar el formato de las horas
+  validateOperatingHours(
     control: AbstractControl
   ): { [key: string]: any } | null {
     const pattern =
@@ -94,43 +98,37 @@ export class CreateRestaurantComponent implements OnInit {
     }
   }
 
+  // Metodo encargado de enviar los datos
   send() {
-    console.log("VALIDO: " + this.createRestaurantForm.valid);
-    console.log("MODO EDIT: " + this.isEdit);
-    // Se asignan los valores del formulario al objeto restaurant
-    //this.restaurant = this.createRestaurantForm.value;
-
+    // Si el formulario es válido (datos informados correctos)
     if (this.createRestaurantForm.valid) {
-    
+      // Si estamos editando, se llama al servicio para actualizar el restaurante
       if (this.isEdit) {
-        this.restaurantService.editRestaurant(this.restaurantId!, this.createRestaurantForm.value!).subscribe({
-          next: (data) => {
-            this.restaurantService.sendData.next(true);
-            console.log('Restaurante editado: ' + data);
-          },
-          error: (error) => {
-            console.log('Error al editar restaurante: ' + error);
-          }
-        });
+        this.restaurantService
+          .editRestaurant(this.restaurantId!, this.createRestaurantForm.value!)
+          .subscribe({
+            next: (data) => {
+              this.restaurantService.sendData.next(true);
+              console.log('Restaurante editado: ' + data);
+            },
+            error: (error) => {
+              console.log('Error al editar restaurante: ' + error);
+            },
+          });
       }
+      // Si no estamos editando, se llama al servicio para crear el restaurante
       else {
-        
-        this.restaurantService.createRestaurantHttp(this.createRestaurantForm.value!).subscribe({
-          next: (data) => {
-            this.restaurantService.sendData.next(true);
-            console.log('Restaurante creado: ' + data);
-          },
-          error: (error) => {
-            console.log('Error al crear restaurante: ' + error);
-          }
-        })
-        //const control = this.restaurantService.createRestaurant(this.restaurant!);
-      // if (control) {
-      //   console.log('Restaurante creado');
-      //   console.log(this.restaurant);
-      // } else {
-      //   console.log('Error al crear restaurante');
-      // }
+        this.restaurantService
+          .createRestaurantHttp(this.createRestaurantForm.value!)
+          .subscribe({
+            next: (data) => {
+              this.restaurantService.sendData.next(true);
+              console.log('Restaurante creado: ' + data);
+            },
+            error: (error) => {
+              console.log('Error al crear restaurante: ' + error);
+            },
+          });
       }
     }
   }

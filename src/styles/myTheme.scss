@@ -1,27 +1,31 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 
 $my-primary: mat.define-palette(mat.$indigo-palette);
 $my-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 $my-warn: mat.define-palette(mat.$red-palette);
 
 // Tema oscuro
-$my-dark-theme: mat.define-dark-theme((
- color: (
-   primary: $my-primary,
-   accent: $my-accent,
-   warn: $my-warn,
- )
-));
+$my-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+);
 
 // Tema claro
 
-$my-light-theme: mat.define-light-theme((
- color: (
-   primary: $my-primary,
-   accent: $my-accent,
-   warn: $my-warn,
- )
-));
+$my-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+);
 
 @mixin theme($theme) {
   @include mat.all-component-themes($theme);

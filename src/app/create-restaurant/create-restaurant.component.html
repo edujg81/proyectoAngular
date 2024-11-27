@@ -1,18 +1,36 @@
+<!-- Se incluye el componente de cabecera al que se le pasa el título definido en create-restaurant.component.ts -->
 <app-header [title]="title"></app-header>
 
+<!-- Formulario reactivo para crear o editar un restaurante. Usa createRestaurantForm para mostrar, guardar y validar los datos. -->
 <form [formGroup]="createRestaurantForm">
   <div fxLayoutGap="5px">
+    <!-- Campo "Name" del formulario con Angular Material -->
     <mat-form-field appearance="fill">
+      <!-- Etiqueta e input del campo -->
       <mat-label>Name</mat-label> <input formControlName="name" matInput />
-      <div *ngIf="createRestaurantForm.get('name')?.invalid && createRestaurantForm.get('name')?.dirty && createRestaurantForm.get('name')?.touched">
-        <mat-error *ngIf="createRestaurantForm.get('name')?.hasError('required')">
+      <!-- Validaciones -->
+      <div
+        *ngIf="
+          createRestaurantForm.get('name')?.invalid &&
+          createRestaurantForm.get('name')?.dirty &&
+          createRestaurantForm.get('name')?.touched
+        "
+      >
+        <!-- Mensajes de error   -->
+        <mat-error
+          *ngIf="createRestaurantForm.get('name')?.hasError('required')"
+        >
           Name is required
         </mat-error>
-        <mat-error *ngIf="createRestaurantForm.get('name')?.hasError('minlength')">
+        <mat-error
+          *ngIf="createRestaurantForm.get('name')?.hasError('minlength')"
+        >
           Name must be at least 5 characters
         </mat-error>
       </div>
     </mat-form-field>
+
+    <!-- Campo "Address" del formulario con Angular Material -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Address</mat-label>
       <input formControlName="address" matInput placeholder="Enter address" />
@@ -33,6 +51,7 @@
         placeholder="Enter photograph"
       />
     </mat-form-field>
+    <!-- Campo "Cuisine type" del formulario con Angular Material -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Cuisine type</mat-label>
       <input
@@ -41,6 +60,7 @@
         placeholder="Enter cuisine type"
       />
     </mat-form-field>
+    <!-- LATITUD Y LONGITUD -->
     <div
       formGroupName="latlng"
       fxLayout.xs="column"
@@ -48,7 +68,7 @@
       fxLayout="row wrap"
       fxLayoutAlign="space-between"
     >
-      <!--LATITUD Y LONGITUD-->
+      <!-- Campos "Latitud" y "Longitud" del formulario con Angular Material -->
       <mat-form-field fxFlex="auto" appearance="fill">
         <mat-label>Latitude</mat-label>
         <input
@@ -68,6 +88,7 @@
         />
       </mat-form-field>
     </div>
+    <!-- HORAS DE APERTURA -->
     <h3>Operating hours</h3>
     <div
       formGroupName="operating_hours"
@@ -76,7 +97,7 @@
       fxLayoutGap="5px"
       fxLayoutAlign="space-between"
     >
-      <!--HORAS DE APERTURA-->
+      <!-- Campo "Monday" del formulario con Angular Material -->
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Monday</mat-label>
         <input
@@ -84,10 +105,24 @@
           matInput
           placeholder="Enter operating hours"
         />
-          <mat-error *ngIf="createRestaurantForm.get('operating_hours')?.get('Monday')?.hasError('wrong_operating_hours')">
-            {{createRestaurantForm.get('operating_hours')?.get('Monday')?.getError('wrong_operating_hours')}}
-            Monday is required
-          </mat-error>
+        <!-- Validaciones -->
+        <mat-error
+          *ngIf="
+            createRestaurantForm
+              .get('operating_hours')
+              ?.get('Monday')
+              ?.hasError('wrong_operating_hours')
+          "
+        >
+          {{
+            createRestaurantForm
+              .get("operating_hours")
+              ?.get("Monday")
+              ?.getError("wrong_operating_hours")
+          }}
+          Monday is required
+        </mat-error>
+        <!-- Campo "Tuesday" del formulario con Angular Material -->
       </mat-form-field>
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Tuesday</mat-label>
@@ -96,6 +131,7 @@
           matInput
           placeholder="Enter operating hours"
         />
+        <!-- Campo "Wednesday" del formulario con Angular Material -->
       </mat-form-field>
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Wednesday</mat-label>
@@ -105,6 +141,7 @@
           placeholder="Enter operating hours"
         />
       </mat-form-field>
+      <!-- Campo "Thursday" del formulario con Angular Material -->
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Thursday</mat-label>
         <input
@@ -113,6 +150,7 @@
           placeholder="Enter operating hours"
         />
       </mat-form-field>
+      <!-- Campo "Friday" del formulario con Angular Material -->
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Friday</mat-label>
         <input
@@ -121,6 +159,7 @@
           placeholder="Enter operating hours"
         />
       </mat-form-field>
+      <!-- Campo "Saturday" del formulario con Angular Material -->
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Saturday</mat-label>
         <input
@@ -129,6 +168,7 @@
           placeholder="Enter operating hours"
         />
       </mat-form-field>
+      <!-- Campo "Sunday" del formulario con Angular Material -->
       <mat-form-field fxFlex.sm="48" fxFlex="auto" appearance="fill">
         <mat-label>Sunday</mat-label>
         <input
@@ -139,7 +179,14 @@
       </mat-form-field>
     </div>
   </div>
-  <button type="submit" mat-raised-button color="primary" (click)="send()" [disabled]="createRestaurantForm.invalid">
-    {{ isEdit ? 'Guardar' : 'Crear' }}
+  <!-- Botón para enviar los datos -->
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    (click)="send()"
+    [disabled]="createRestaurantForm.invalid"
+  >
+    {{ isEdit ? "Guardar" : "Crear" }}
   </button>
 </form>
