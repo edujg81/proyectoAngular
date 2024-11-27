@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { RestaurantService } from '../../services/restaurant.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-restaurant',
@@ -25,7 +25,8 @@ export class CreateRestaurantComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private restaurantService: RestaurantService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     // Se inicializa la variable "restaurant" a null, indicando que puede ser de tipo unknown(desconocido) o Restaurant
     this.restaurant! = null as unknown as Restaurant; // Initialize with null
@@ -130,6 +131,8 @@ export class CreateRestaurantComponent implements OnInit {
             },
           });
       }
+      // Se redirige a la lista de restaurantes
+      this.router.navigate(['/restaurants']);
     }
   }
 }
